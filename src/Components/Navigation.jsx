@@ -39,9 +39,11 @@ const navs=[{
     requireAuth: false,
     isVisibleAfterAuth: false,
     role: "ALL",
-  },
+    },
+  
     // -------------------------- BEFORE AND AFTER AUTH ----------------
-  {
+  
+    {
     path: "/",
     element: <Home />,
     requireAuth: false,
@@ -54,9 +56,11 @@ const navs=[{
     requireAuth: false,
     isVisibleAfterAuth: true,
     role: "ALL",
-  },
+    },
+  
   // ---------------------- COMMON AND AFTER AUTH ----------------------
-  {
+  
+    {
     path: "/account",
     element: <Account />,
     requireAuth: true,
@@ -69,9 +73,11 @@ const navs=[{
     requireAuth: true,
     isVisibleAfterAuth: true,
     role: "ALL",
-  },
+    },
+  
   // --------------------------- CUSTOMER --------------------------
-  {
+  
+    {
     path: "/cart",
     element: <Cart />,
     requireAuth: true,
@@ -91,9 +97,11 @@ const navs=[{
     requireAuth: true,
     isVisibleAfterAuth: true,
     role: "CUSTOMER",
-  },
+    },
+  
   // ------------------------- SELLER ----------------------------
-  {
+  
+    {
     path: "/seller-dashboard",
     element: <SellerDashboard />,
     requireAuth: true,
