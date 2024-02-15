@@ -1,13 +1,41 @@
 import React, { useState } from "react";
 import cart from "../../Images/cart.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Register = ({ role }) => {
-  const [username, setusername] = useState("");
+  const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
 
-  const user = (e) => {
-    e.preventDefault();
+  const nav = useNavigate();
+
+  const handleRegistration = async (e) => {
+    // e.preventDefault();
+    //fire request using axios
+    const url = "http://localhost:8080/api/v1/user";
+    const body = {
+      email: email,
+      password: password,
+      userrole: role,
+    };
+
+    const header = {
+      headers: {
+        "Content-type": "application/json",
+      },
+    };
+
+    try {
+      const res = await axios.post(url, body, header);
+      sessionStorage.setItem("email", res.data.data.email)
+      console.log(res);
+      console.log(sessionStorage.getItem("email"));
+      if (res.status === 201) {
+        nav("/verify-otp");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -39,7 +67,7 @@ const Register = ({ role }) => {
               type="email"
               className="text-xl w-96 h-12 pl-2"
               autoFocus
-              onChange={(e) => setusername(e.target.value)}
+              onChange={(e) => setemail(e.target.value)}
             />
           </div>
           <div className="p-5">
@@ -54,19 +82,15 @@ const Register = ({ role }) => {
               onChange={(e) => setpassword(e.target.value)}
             />
           </div>
-          <div>
-            <label htmlFor="" className="hidden">
-              User Role
-            </label>
-            <input type="text" className="hidden" value={user} />
+          {console.log(email, password, role)}
+          <div className="pl-5 ">
+            <button
+              className="w-60 h-12 bg-amber-400 mt-12 text-xl"
+              onClick={handleRegistration}
+            >
+              Continue
+            </button>
           </div>
-          <Link to={"/verify-otp"} className="text-black ">
-            <div className="pl-5">
-              <button className="w-60 h-12 bg-amber-400 mt-12 text-xl">
-                Continue
-              </button>
-            </div>
-          </Link>
         </div>
       </section>
     </div>

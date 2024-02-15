@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Login = () => {
+  const [email, setemail] = useState("");
+  const [password, setpassword] = useState("");
+
+  const user = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div className=" mt-20 ml-72 w-8/12 h-full justify-center flex items-center ">
       <section className=" w-2/4 h-96 pb-28 drop-shadow-2xl cart border-indigo-600">
@@ -30,7 +37,7 @@ const Login = () => {
               type="email"
               className="text-xl w-96 h-12 pl-2 "
               autoFocus
-              onChange={(e) => setusername(e.target.value)}
+              onChange={(e) => setemail(e.target.value)}
             />
           </div>
           <div className="p-5">
@@ -45,13 +52,13 @@ const Login = () => {
               onChange={(e) => setpassword(e.target.value)}
             />
           </div>
-          <Link to={"/verify-otp"} className="text-black ">
-            <div className="pl-5">
+          <div className="pl-5">
+            <Link to={"/verify-otp"} className="text-black ">
               <button className="w-60 h-12 bg-amber-400 mt-12 text-xl">
                 Continue
               </button>
-            </div>
-          </Link>
+            </Link>
+          </div>
         </div>
       </section>
     </div>
