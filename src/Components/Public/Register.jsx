@@ -62,7 +62,7 @@ const Register = ({ role }) => {
           </div>
           <Link to={"/verify-otp"} className="text-black ">
             <div className="pl-5">
-              <button className="w-60 h-12 bg-amber-400 mt-12 text-xl">
+              <button className="w-60 h-12 bg-amber-600 mt-12 text-xl">
                 Continue
               </button>
             </div>
