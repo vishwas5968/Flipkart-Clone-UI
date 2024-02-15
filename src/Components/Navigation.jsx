@@ -12,16 +12,17 @@ import Search from "./Public/Search";
 import VerifyOTP from "./Public/VerifyOTP";
 
 
-const navs=[{
+const navs = [
+  {
     path: "/seller/register",
-    element: <Register />,
+    element: <Register role="SELLER" />,
     requireAuth: false,
     isVisibleAfterAuth: false,
     role: "ALL",
   },
   {
     path: "/customer/register",
-    element: <Register />,
+    element: <Register role="CUSTOMER" />,
     requireAuth: false,
     isVisibleAfterAuth: false,
     role: "ALL",
@@ -39,11 +40,11 @@ const navs=[{
     requireAuth: false,
     isVisibleAfterAuth: false,
     role: "ALL",
-    },
-  
-    // -------------------------- BEFORE AND AFTER AUTH ----------------
-  
-    {
+  },
+
+  // -------------------------- BEFORE AND AFTER AUTH ----------------
+
+  {
     path: "/",
     element: <Home />,
     requireAuth: false,
@@ -56,11 +57,11 @@ const navs=[{
     requireAuth: false,
     isVisibleAfterAuth: true,
     role: "ALL",
-    },
-  
+  },
+
   // ---------------------- COMMON AND AFTER AUTH ----------------------
-  
-    {
+
+  {
     path: "/account",
     element: <Account />,
     requireAuth: true,
@@ -73,11 +74,11 @@ const navs=[{
     requireAuth: true,
     isVisibleAfterAuth: true,
     role: "ALL",
-    },
-  
+  },
+
   // --------------------------- CUSTOMER --------------------------
-  
-    {
+
+  {
     path: "/cart",
     element: <Cart />,
     requireAuth: true,
@@ -97,11 +98,11 @@ const navs=[{
     requireAuth: true,
     isVisibleAfterAuth: true,
     role: "CUSTOMER",
-    },
-  
+  },
+
   // ------------------------- SELLER ----------------------------
-  
-    {
+
+  {
     path: "/seller-dashboard",
     element: <SellerDashboard />,
     requireAuth: true,
@@ -114,7 +115,7 @@ const navs=[{
     requireAuth: true,
     isVisibleAfterAuth: true,
     role: "SELLER",
-  },
+  },
 ];
 
 export default navs

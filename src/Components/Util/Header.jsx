@@ -37,6 +37,11 @@ const Header = () => {
               Signup
             </button>
           </Link>
+          <Link to={"/verify-otp"} className="text-white ">
+            <button className="h-10 w-28 bg-blue-600 text-white hover:bg-white hover:text-blue-700 font-medium rounded-sm">
+              OTP
+            </button>
+          </Link>
           <Link to={"/cart"} className="text-white ">
             <button className="h-10 w-28 bg-blue-600 text-white hover:bg-white hover:text-blue-700 font-medium rounded-sm">
               Cart

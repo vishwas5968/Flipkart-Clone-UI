@@ -12,3 +12,8 @@
 body {
     width: 100vw;
 }
+
+.cart {
+    background: url("./Images/shopping-pattern.avif");
+    background-size: contain;
+}
