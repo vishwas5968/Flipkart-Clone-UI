@@ -11,7 +11,6 @@ import Register from "./Public/Register";
 import Search from "./Public/Search";
 import VerifyOTP from "./Public/VerifyOTP";
 
-
 const navs = [
   {
     path: "/seller/register",
@@ -118,4 +117,4 @@ const navs = [
   },
 ];
 
-export default navs
+export default navs;
