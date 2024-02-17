@@ -1,16 +1,50 @@
+import axios from "axios";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../Context/AuthProvider";
 
 const Login = () => {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
+  const { auth, setAuth } = useAuth();
+  const nav = useNavigate();
 
-  const user = (e) => {
-    e.preventDefault();
+  const handleLogin = async (e) => {
+    // e.preventDefault();
+    const url = "http://localhost:8080/api/v1/login";
+
+    const body = {
+      email: email,
+      password: password,
+    };
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    };
+    const response = await axios.post(url, body, config);
+    if (response.status === 202) {
+      console.log(response);
+      const user = {
+        userId: response.data.data.userId,
+        username: response.data.data.username,
+        userRole: response.data.data.userRole,
+        accessExpiration: response.data.data.accessExpiration,
+        refreshExpiration: response.data.data.refreshExpiration,
+        authenticated: response.data.data.authenticated,
+      };
+      localStorage.setItem("user", JSON.stringify(user));
+      setAuth(user);
+      nav("/");
+    } else {
+      nav("/search");
+    }
   };
 
   return (
-    <div className=" mt-20 ml-72 w-8/12 h-full justify-center flex items-center ">
+    <div className=" mt-20 ml-60 w-8/12 h-full justify-center flex items-center ">
       <section className=" w-2/4 h-96 pb-28 drop-shadow-2xl cart border-indigo-600">
         <div className="bg-blue-950 h-full pb-28 bg-opacity-90">
           <div className="h-full w-full flex justify-start items-center flex-col ">
@@ -53,11 +87,12 @@ const Login = () => {
             />
           </div>
           <div className="pl-5">
-            <Link to={"/verify-otp"} className="text-black ">
-              <button className="w-60 h-12 bg-amber-400 mt-12 text-xl">
-                Continue
-              </button>
-            </Link>
+            <button
+              className="w-60 h-12 bg-amber-400 mt-12 text-xl"
+              onClick={handleLogin}
+            >
+              Continue
+            </button>
           </div>
         </div>
       </section>

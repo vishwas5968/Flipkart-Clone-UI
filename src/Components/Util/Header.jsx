@@ -18,7 +18,7 @@ const Header = () => {
               placeholder="Search for products, categories etc..."
               className=" min-w-96 pl-8 pr-8 h-full bg-blue-50  rounded-sm"
             ></input>
-            <i class="fa-solid fa-magnifying-glass"></i>
+            <i className="fa-solid fa-magnifying-glass"></i>
           </div>
         </div>
         <div className="flex justify-evenly items-center h-full w-4/12 ">

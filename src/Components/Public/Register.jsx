@@ -27,7 +27,7 @@ const Register = ({ role }) => {
 
     try {
       const res = await axios.post(url, body, header);
-      sessionStorage.setItem("email", res.data.data.email)
+      sessionStorage.setItem("email", res.data.data.email);
       console.log(res);
       console.log(sessionStorage.getItem("email"));
       if (res.status === 201) {
@@ -39,7 +39,7 @@ const Register = ({ role }) => {
   };
 
   return (
-    <div className=" mt-20 ml-72 w-8/12 h-full justify-center flex items-center ">
+    <div className=" mt-20 ml-60 w-8/12 h-full justify-center flex items-center ">
       <section className=" w-2/4 h-96 pb-28 drop-shadow-2xl cart border-indigo-600">
         <div className="bg-blue-950 h-full pb-28 bg-opacity-90">
           <div className="h-full w-full flex justify-start items-center flex-col ">
