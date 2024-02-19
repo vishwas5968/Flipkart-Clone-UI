@@ -26,18 +26,24 @@ const Login = () => {
     };
     const response = await axios.post(url, body, config);
     if (response.status === 202) {
-      console.log(response);
+      console.log(response.data + "3333333333333");
       const user = {
         userId: response.data.data.userId,
         username: response.data.data.username,
         userRole: response.data.data.userRole,
         accessExpiration: response.data.data.accessExpiration,
         refreshExpiration: response.data.data.refreshExpiration,
-        authenticated: response.data.data.authenticated,
+        isAuthenticated: true,
+        login: true,
       };
+      // console.log(user + "22222222222222");
       localStorage.setItem("user", JSON.stringify(user));
-      setAuth(user);
-      nav("/");
+      setAuth({ ...user });
+      if (user.userRole === "SELLER") {
+        nav("/seller-dashboard");
+      } else {
+        nav("/");
+      }
     } else {
       nav("/search");
     }

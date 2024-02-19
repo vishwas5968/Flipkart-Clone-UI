@@ -1,7 +1,7 @@
 import React, { useState, createContext, useContext, useEffect } from "react";
 import RefreshToken from "../Refresh/RefreshToken";
 
-const authContext = createContext({});
+export const AuthContext = createContext({});
 
 function AuthProvider({ child }) {
   let isRefreshRequested = false;
@@ -12,40 +12,46 @@ function AuthProvider({ child }) {
     accessExpiration: "",
     refreshExpiration: "",
     isAuthenticated: false,
+    login: false,
   });
-
+  // console.log(auth.login + "++++++++++++++++++");
   const { checkToken } = RefreshToken();
 
   const doRefresh = async () => {
     const data = await checkToken();
-    console.log(data);
     setAuth({
       userId: data.userId,
       username: data.username,
       userRole: data.userRole,
       accessExpiration: data.accessExpiration,
       refreshExpiration: data.refreshExpiration,
-      isAuthenticated: false,
+      isAuthenticated: data.authenticated,
+      login: true,
     });
-    
   };
 
   useEffect(() => {
     if (!isRefreshRequested) {
+      console.log("inside isRefreshRequested");
       isRefreshRequested = true;
       doRefresh();
     }
   }, []);
 
+  useEffect(() => {
+    // console.log(auth);
+    // console.log("!!!!!!!!!!!");
+  }, [auth]);
+
   return (
     <>
-      <authContext.Provider value={{ auth, setAuth }}>
+      <AuthContext.Provider value={{ auth, setAuth }}>
         {child}
-      </authContext.Provider>
+      </AuthContext.Provider>
     </>
   );
 }
 
 export default AuthProvider;
 
-export const useAuth = () => useContext(authContext);
+export const useAuth = () => useContext(AuthContext);

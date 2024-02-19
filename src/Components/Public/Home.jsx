@@ -1,9 +1,22 @@
-import React from 'react'
+import React, { useEffect } from "react";
+import Header from "../Util/Header";
 
 const Home = () => {
-  return (
-    <div>Home</div>
-  )
-}
+  let isRefreshRequested = false;
+  const pageHeader = Header();
+  useEffect(() => {
+    pageHeader;
+  }, []);
 
-export default Home
+  //  useEffect(() => {
+  //    pageHeader();
+  //  }, []);
+
+  return (
+    <div>
+      Home
+    </div>
+  );
+};
+
+export default Home;
